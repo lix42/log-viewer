@@ -3,6 +3,9 @@
 ## Summary
 A log viewer to view a long logs from a network response.
 
+## Documents:
+* [High level design](https://github.com/lix42/log-viewer/wiki/Log-Viewer-High-Level-Design)
+
 ## Goals
 ### Functional
 [] Fetch data from the given URL
