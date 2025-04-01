@@ -2,8 +2,8 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
+import reactLogo from "./assets/react.svg";
 
 const Container = styled.div`
   max-width: 1280px;
@@ -39,10 +39,10 @@ function App() {
   return (
     <Container>
       <div>
-        <a href="https://vite.dev" target="_blank">
+        <a href="https://vite.dev" target="_blank" rel="noreferrer">
           <img src={viteLogo} css={logoStyle} alt="Vite logo" />
         </a>
-        <a href="https://react.dev" target="_blank">
+        <a href="https://react.dev" target="_blank" rel="noreferrer">
           <img
             src={reactLogo}
             css={[logoStyle, css`&.react { animation: spin 20s linear infinite; }`]}
@@ -53,7 +53,9 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <Card>
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
+        <button type="button" onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>

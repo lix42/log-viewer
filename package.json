@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "biome lint ./src",
-    "format": "biome format --write ./src",
+    "check": "biome check ./src && tsc --noEmit && vitest run",
+    "fix": "biome check --apply ./src",
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage"
