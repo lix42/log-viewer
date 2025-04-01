@@ -22,7 +22,7 @@ const logoStyle = css`
   }
   &.react:hover {
     filter: drop-shadow(0 0 2em #61dafbaa);
-  }
+ }
 `;
 
 const Card = styled.div`
