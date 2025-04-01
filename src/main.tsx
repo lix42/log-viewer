@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
 import "./index.css";
+import { FetchHost } from "./FetchHost.tsx";
 
 const root = document.getElementById("root");
 if (!root) {
@@ -9,6 +9,6 @@ if (!root) {
 }
 createRoot(root).render(
   <StrictMode>
-    <App />
+    <FetchHost />
   </StrictMode>,
 );
