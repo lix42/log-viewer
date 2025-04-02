@@ -1,7 +1,7 @@
-type JsonPrimitive = string | number | boolean | null;
-type JsonArray = JsonPrimitive[] | JsonObject[];
+export type JsonPrimitive = string | number | boolean | null;
+export type JsonArray = JsonPrimitive[] | JsonObject[];
 
-type JsonObject = {
+export type JsonObject = {
   [key: string]: JsonPrimitive | JsonArray | JsonObject;
 };
 
