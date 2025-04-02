@@ -40,28 +40,28 @@ const longItem = {
 };
 export const Default: Story = {
   args: {
-    item: shortItem,
+    data: shortItem,
     index: 0,
   },
 };
 
 export const LongMessage: Story = {
   args: {
-    item: longItem,
+    data: longItem,
     index: 0,
   },
 };
 
 export const MultipleItems: Story = {
   args: {
-    item: longItem,
+    data: longItem,
     index: 0,
   },
   render: () => (
     <div>
-      <LogItem item={shortItem} index={0} />
-      <LogItem item={longItem} index={1} />
-      <LogItem item={shortItem} index={2} />
+      <LogItem data={shortItem} index={0} />
+      <LogItem data={longItem} index={1} />
+      <LogItem data={shortItem} index={2} />
     </div>
   ),
 };

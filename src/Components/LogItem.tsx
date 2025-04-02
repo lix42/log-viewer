@@ -1,6 +1,6 @@
-import React from "react";
-import { LogItemType } from "../type";
-import styles from "./LogItem.module.css"; // Use CSS modules
+import { memo } from "react";
+import { LogItemData } from "../type";
+import styles from "./LogItem.module.css";
 
 // Helper function to convert Date to local ISO string
 const toLocalISOString = (date: Date): string => {
@@ -14,25 +14,23 @@ const toLocalISOString = (date: Date): string => {
 };
 
 interface LogItemProps {
-  item: LogItemType;
+  data: LogItemData;
   index: number;
 }
 
-export const LogItem = React.memo(({ item, index }: LogItemProps) => {
-  const utcTime = new Date(item._time);
+export const LogItem = memo(({ data, index }: LogItemProps) => {
+  const utcTime = new Date(data._time);
   const formattedLocalIsoTime = toLocalISOString(utcTime); // Use the helper function
   const formattedUtcIsoTime = utcTime.toISOString();
-  const { _time, ...rest } = item;
-  const formattedItem = JSON.stringify({
-    time: formattedUtcIsoTime,
-    ...rest,
-  });
+  const { _time, ...rest } = data;
+  const updatedData = { time: formattedUtcIsoTime, ...rest };
+  const formattedItem = JSON.stringify(updatedData);
   return (
-    <div className={styles["log-item"]} role="row" aria-rowindex={index + 1}>
-      <div className={styles["log-item__time"]} role="cell">
+    <div className={styles["log-item"]} role="row" aria-rowindex={index + 1} data-testid="log-item">
+      <div className={styles["log-item__time"]} role="cell" data-testid="log-item-time">
         {formattedLocalIsoTime}
       </div>
-      <div className={styles["log-item__message"]} role="cell">
+      <div className={styles["log-item__message"]} role="cell" data-testid="log-item-message">
         {formattedItem}
       </div>
     </div>
