@@ -1,12 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-class AbortError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "AbortError";
-  }
-}
-
 const fetchWithRetry = async (
   url: string,
   retries: number,
@@ -68,10 +61,7 @@ export const useStreamingFetch = (url: string) => {
         setData((prev) => [...prev, ...lines]);
       }
     } catch (err) {
-      if (
-        abortControllerRef.current?.signal.aborted ||
-        (err instanceof AbortError && err.message === "Cleanup")
-      ) {
+      if (abortControllerRef.current?.signal.aborted || err === "Cleanup") {
         // Ignore abort errors
       } else {
         setError(err as Error);
@@ -89,7 +79,7 @@ export const useStreamingFetch = (url: string) => {
     promiseRef.current = fetchData();
 
     return () => {
-      abortControllerRef.current?.abort(new AbortError("Cleanup"));
+      abortControllerRef.current?.abort("Cleanup");
       promiseRef.current = null;
     };
   }, [fetchData]);
