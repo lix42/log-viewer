@@ -14,7 +14,7 @@ export const DataProvider: React.FC<{ children: ReactNode; url?: string }> = ({
   children,
   url = "https://s3.amazonaws.com/io.cribl.c021.takehome/cribl.log",
 }) => {
-  // TODO: Add dealyBetweenRead to the useStreamingFetch hook
+  // TODO: Add delayBetweenRead to the useStreamingFetch hook
   // TODO: Use requestIdleCallback to parse the data when the items is not empty
   // TODO: Add useDeferredValue to the items state
   const [items, setItmes] = useState<DataContextType["items"]>([]);
