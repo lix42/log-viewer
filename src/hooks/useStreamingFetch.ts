@@ -34,7 +34,21 @@ const fetchWithRetry = async (
   throw new Error("Unreachable code");
 };
 
-export const useStreamingFetch = (url: string) => {
+type UseStreamingFetchOptions = {
+  maxRetries: number;
+  retryDelay: number;
+  intervalBetweenRead?: number;
+};
+
+export const useStreamingFetch = (
+  url: string,
+  options: UseStreamingFetchOptions = {
+    maxRetries: 3,
+    retryDelay: 1000,
+  },
+) => {
+  const optionsRef = useRef<UseStreamingFetchOptions>(options);
+  const lastModifiedRef = useRef<string | null>(null);
   const [data, setData] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -49,23 +63,37 @@ export const useStreamingFetch = (url: string) => {
 
     try {
       setLoading(true);
-      const response = await fetchWithRetry(url, 3, 1000, abortControllerRef.current); // 3 retries with 1-second delay
-      const reader = response.body?.getReader();
-      const decoder = new TextDecoder("utf-8");
-      let remaining = "";
+      const response = await fetchWithRetry(
+        url,
+        optionsRef.current.maxRetries,
+        optionsRef.current.retryDelay,
+        abortControllerRef.current,
+      ); // 3 retries with 1-second delay
+      const lastModified = response.headers.get("last-modified");
+      if (!lastModified || lastModified !== lastModifiedRef.current) {
+        lastModifiedRef.current = lastModified;
+        const reader = response.body?.getReader();
+        const decoder = new TextDecoder("utf-8");
+        let remaining = "";
 
-      while (reader) {
-        const { value, done } = await reader.read();
-        if (done) {
-          if (remaining) {
-            setData((prev) => [...prev, remaining]);
+        while (reader) {
+          const { value, done } = await reader.read();
+          if (done) {
+            if (remaining) {
+              setData((prev) => [...prev, remaining]);
+            }
+            break;
           }
-          break;
+          const newContent = remaining + decoder.decode(value, { stream: true });
+          const lines = newContent.split("\n");
+          remaining = lines.pop() || "";
+          setData((prev) => [...prev, ...lines]);
+          if (optionsRef.current.intervalBetweenRead) {
+            await new Promise((resolve) =>
+              setTimeout(resolve, optionsRef.current.intervalBetweenRead),
+            );
+          }
         }
-        const newContent = remaining + decoder.decode(value, { stream: true });
-        const lines = newContent.split("\n");
-        remaining = lines.pop() || "";
-        setData((prev) => [...prev, ...lines]);
       }
     } catch (err) {
       if (
@@ -100,5 +128,5 @@ export const useStreamingFetch = (url: string) => {
     promiseRef.current = fetchData();
   }, [fetchData]);
 
-  return { data, loading, error, refetch };
+  return { lastModified: lastModifiedRef.current, data, loading, error, refetch };
 };
