@@ -11,7 +11,7 @@ A log viewer to view a long logs from a network response.
 ### Functional
 * [x] Fetch data from the given URL
 * [] Render list view
-* [] Render individual item in the list view
+* [x] Render individual item in the list view
 * [] Render time line
 * [] Error handling
 ### Performance

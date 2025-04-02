@@ -1,6 +1,6 @@
-* [x] Create streaming fetch hook #1
+* [x] Create streaming fetch hook
 * [] Create list view
-* [] Expandable item
+* [x] Expandable item
 * [] Virtualize the list view
 * [] time line
 * [] use deferred value

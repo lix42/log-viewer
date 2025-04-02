@@ -13,3 +13,10 @@ export type LogItemDataWithId = {
   data: LogItemData;
   id: string;
 };
+
+export type DataContextType = {
+  items: LogItemDataWithId[];
+  loading: boolean;
+  error: Error | null;
+  refetch: () => void;
+};
