@@ -9,13 +9,13 @@ A log viewer to view a long logs from a network response.
 
 ## Goals
 ### Functional
-* [] Fetch data from the given URL
+* [x] Fetch data from the given URL
 * [] Render list view
 * [] Render individual item in the list view
 * [] Render time line
 * [] Error handling
 ### Performance
-* [] Deal with streaming response
+* [x] Deal with streaming response
 * [] Suspense transition
 * [] Virtualization list view
 * [] Local storage cache
