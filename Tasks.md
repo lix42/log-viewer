@@ -1,4 +1,4 @@
-* [] Create streaming fetch hook
+* [x] Create streaming fetch hook #1
 * [] Create list view
 * [] Expandable item
 * [] Virtualize the list view
