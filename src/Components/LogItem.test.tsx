@@ -1,7 +1,7 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect } from "vitest"; // Import from vitest
-import { LogItem } from "./LogItem"; // Updated import path
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest"; // Import from vitest
 import { LogItemData } from "../type";
+import { LogItem } from "./LogItem"; // Updated import path
 
 describe("LogItem Component", () => {
   const mockData: LogItemData = {

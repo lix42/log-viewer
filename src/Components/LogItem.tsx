@@ -1,7 +1,7 @@
 import { memo, useId, useState } from "react";
 import { LogItemData } from "../type";
-import styles from "./LogItem.module.css";
 import { LogDetail } from "./LogDetail"; // Import LogDetail component
+import styles from "./LogItem.module.css";
 
 // Helper function to convert Date to local ISO string
 const toLocalISOString = (date: Date): string => {
