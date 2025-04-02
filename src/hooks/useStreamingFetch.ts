@@ -7,7 +7,6 @@ class AbortError extends Error {
   }
 }
 
-
 const fetchWithRetry = async (
   url: string,
   retries: number,
