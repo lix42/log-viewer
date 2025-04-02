@@ -19,6 +19,8 @@ const shortItem = {
   _time: new Date().getTime(),
   message: "This is a log message",
   level: "info",
+  numberValue: 42,
+  booleanValue: true,
 };
 
 const longItem = {
@@ -37,6 +39,8 @@ const longItem = {
     description: "Members with this policy can view and use the macro",
     title: "Read Only",
   },
+  numberValue: 100,
+  booleanValue: false,
 };
 export const Default: Story = {
   args: {

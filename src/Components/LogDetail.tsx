@@ -59,7 +59,7 @@ const renderTree = (data: JsonObject) => {
 
 export const LogDetail = ({ data }: LogDetailProps) => {
   return (
-    <div>
+    <div className={styles["log-detail"]} data-testid="log-detail">
       <div>{"{"}</div>
       {renderTree(data)}
       <div>{"}"}</div>
