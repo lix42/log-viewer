@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { DataContext } from "./DataContext";
 import { useStreamingFetch } from "./hooks/useStreamingFetch";
 import { DataContextType, LogItemDataWithId } from "./type";
@@ -21,23 +21,27 @@ export const DataProvider: React.FC<{ children: ReactNode; url?: string }> = ({
   const [parsedIndex, setParsedIndex] = useState(0);
 
   const { data, loading, error, lastModified, refetch } = useStreamingFetch(url);
-  if (parsedIndex < data.length) {
-    const newItems = data
-      .slice(parsedIndex)
-      .map((item, index): LogItemDataWithId | null => {
-        try {
-          return {
-            data: JSON.parse(item),
-            id: `${lastModified}-${index + parsedIndex}`,
-          };
-        } catch {
-          return null;
-        }
-      })
-      .filter(Boolean) as LogItemDataWithId[];
-    setItmes((prev) => [...prev, ...newItems]);
-    setParsedIndex(data.length);
-  }
+
+  useEffect(() => {
+    if (parsedIndex < data.length) {
+      const newItems = data
+        .slice(parsedIndex)
+        .map((item, index): LogItemDataWithId | null => {
+          try {
+            return {
+              data: JSON.parse(item),
+              id: `${lastModified}-${index + parsedIndex}`,
+            };
+          } catch {
+            return null;
+          }
+        })
+        .filter(Boolean) as LogItemDataWithId[];
+      setItmes((prev) => [...prev, ...newItems]);
+      setParsedIndex(data.length);
+    }
+  }, [data, lastModified, parsedIndex]);
+
   const value: DataContextType = {
     items,
     loading,
