@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import { useStreamingFetch } from "./hooks/useStremingFetch";
+import { useStreamingFetch } from "./hooks/useStreamingFetch";
 
 const getKey = (index: number) => index.toString();
 
