@@ -1,5 +1,8 @@
+type JsonPrimitive = string | number | boolean | null;
+type JsonArray = JsonPrimitive[] | JsonObject[];
+
 type JsonObject = {
-  [key: string]: string | number | boolean | null | JsonObject | JsonObject[];
+  [key: string]: JsonPrimitive | JsonArray | JsonObject;
 };
 
 export type LogItemType = JsonObject & {

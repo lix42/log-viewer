@@ -1,38 +1,33 @@
 .log-item {
+  width: 100%;
+  max-width: 100vw;
   display: flex;
-  /* Flex layout */
   align-items: center;
   border: 1px solid var(--border-color);
-  /* Apply border color */
-  padding: 8px;
-  /* Add padding */
-  margin-bottom: 8px;
-  /* Space between items */
-}
 
-.log-item:not(:first-child) {
-  border-top-color: var(--separator-line-color);
-  /* Top border for non-first items */
-}
+  &:not(:first-child) {
+    /* Top border for non-first items */
+    border-top-color: var(--separator-line-color);
+  }
 
-.log-item:not(:last-child) {
-  border-bottom-color: var(--separator-line-color);
-  /* Bottom border for non-last items */
+  &:not(:last-child) {
+    /* Bottom border for non-last items */
+    border-bottom-color: var(--separator-line-color);
+  }
 }
 
 .log-item__time {
-  flex: 0 0 150px;
-  /* Fixed width for time */
-  font-weight: bold;
-  margin-right: 16px;
-  /* Space between time and message */
+  flex: 0 1 210px;
+  border-right: 1px solid var(--separator-line-color);
+  padding: 8px 2px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .log-item__message {
   flex: 1;
-  /* Take remaining space */
+  padding: 8px 2px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  /* Ellipsis for overflowing text */
 }
