@@ -6,12 +6,16 @@ import styles from "./LogList.module.css"; // Import CSS module
 interface LogListProps {
   items: LogItemDataWithId[];
   loading: boolean;
+  options?: {
+    autoSize?: boolean;
+  };
 }
 
 // IMPORTANT: Adjust the height of each log item based on the UI design
 const ItemHeight = 42; // Height of each log item in pixels
 
-export const LogList: FC<LogListProps> = ({ items, loading }) => {
+export const LogList: FC<LogListProps> = ({ items, loading, options = { autoSize: true } }) => {
+  const optionsRef = useRef(options);
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerHeight, setContainerHeight] = useState(0);
   const [inScopeCount, setInScopeCount] = useState(100);
@@ -19,6 +23,9 @@ export const LogList: FC<LogListProps> = ({ items, loading }) => {
   const containerElem = containerRef.current;
 
   useEffect(() => {
+    if (!optionsRef.current.autoSize) {
+      return;
+    }
     const updateContainerHeight = () => {
       if (containerElem) {
         const newContainerTop = containerElem.getBoundingClientRect().top;
