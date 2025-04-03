@@ -2,9 +2,11 @@
   color-scheme: light dark;
   --text-color: light-dark(CanvasText, #efefef);
   --background-color: light-dark(Canvas, #101010);
+  --alt-background-color: light-black(#efefef, #505050);
   --border-color: light-dark(#bcbcbc, #303030);
   --table-header-bg: light-dark(#f5f5f5, #202020);
   --separator-line-color: light-dark(#e0e0e0, #282828);
+  --time-cell-width: 230px;
 }
 
 body {

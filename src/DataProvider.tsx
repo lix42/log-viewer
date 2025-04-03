@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 import { DataContext } from "./DataContext";
 import { useStreamingFetch } from "./hooks/useStreamingFetch";
 import { DataContextType, LogItemDataWithId } from "./type";
@@ -14,15 +14,16 @@ export const DataProvider: React.FC<{ children: ReactNode; url?: string }> = ({
   children,
   url = "https://s3.amazonaws.com/io.cribl.c021.takehome/cribl.log",
 }) => {
-  // TODO: Add delayBetweenRead to the useStreamingFetch hook
   // TODO: Use requestIdleCallback to parse the data when the items is not empty
   // TODO: Add useDeferredValue to the items state
   const [items, setItmes] = useState<DataContextType["items"]>([]);
   const [parsedIndex, setParsedIndex] = useState(0);
 
-  const { data, loading, error, lastModified, refetch } = useStreamingFetch(url);
+  const { data, loading, error, lastModified, refetch } = useStreamingFetch(url, {
+    intervalBetweenRead: 200,
+  });
 
-  useEffect(() => {
+  const parseData = useCallback(() => {
     if (parsedIndex < data.length) {
       const newItems = data
         .slice(parsedIndex)
@@ -39,8 +40,17 @@ export const DataProvider: React.FC<{ children: ReactNode; url?: string }> = ({
         .filter(Boolean) as LogItemDataWithId[];
       setItmes((prev) => [...prev, ...newItems]);
       setParsedIndex(data.length);
+      console.log(`parsed ${data.length} items`);
     }
   }, [data, lastModified, parsedIndex]);
+
+  if (parsedIndex === 0) {
+    parseData();
+  }
+
+  useEffect(() => {
+    parseData();
+  }, [parseData]);
 
   const value: DataContextType = {
     items,

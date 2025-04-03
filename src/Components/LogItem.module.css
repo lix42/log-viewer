@@ -19,14 +19,19 @@
 .log-item-row {
   display: flex;
   align-items: center;
+  background-color: inherit;
+  &[aria-expanded='true']{
+    background-color: light-dark(#b0b0ef,#30305f);
+  }
 }
 
 .log-item__time {
-  flex: 0 1 230px;
+  flex: 0 1 var(--time-cell-width);
   border-right: 1px solid var(--separator-line-color);
   padding: 8px 2px;
   white-space: nowrap;
   overflow: hidden;
+  background-color: inherit;
 }
 
 .log-item__message {
