@@ -47,6 +47,7 @@ export const useStreamingFetch = (url: string, options: UseStreamingFetchOptions
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const promiseRef = useRef<Promise<void> | null>(null);
+  const mountedRef = useRef(true);
 
   const fetchData = useCallback(
     async (abortController: AbortController) => {
@@ -70,6 +71,9 @@ export const useStreamingFetch = (url: string, options: UseStreamingFetchOptions
           let remaining = "";
 
           while (reader) {
+            if (!mountedRef.current) {
+              return;
+            }
             const { value, done } = await reader.read();
             if (done) {
               if (remaining) {
@@ -106,6 +110,20 @@ export const useStreamingFetch = (url: string, options: UseStreamingFetchOptions
     [url],
   );
 
+  const refetch = useCallback(() => {
+    setData([]);
+    setError(null);
+    // TODO: remember all the AbortController instances and abort them on cleanup
+    promiseRef.current = fetchData(new AbortController());
+  }, [fetchData]);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
   useEffect(() => {
     setData([]);
     setError(null);
@@ -117,13 +135,5 @@ export const useStreamingFetch = (url: string, options: UseStreamingFetchOptions
       promiseRef.current = null;
     };
   }, [fetchData]);
-
-  const refetch = useCallback(() => {
-    setData([]);
-    setError(null);
-    // TODO: remember all the AbortController instances and abort them on cleanup
-    promiseRef.current = fetchData(new AbortController());
-  }, [fetchData]);
-
   return { lastModified: lastModifiedRef.current, data, loading: loading, error, refetch };
 };
