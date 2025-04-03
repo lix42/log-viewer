@@ -70,7 +70,6 @@ export const useStreamingFetch = (url: string, options: UseStreamingFetchOptions
           let remaining = "";
 
           while (reader) {
-            console.log("reader.read()");
             const { value, done } = await reader.read();
             if (done) {
               if (remaining) {

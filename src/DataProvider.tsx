@@ -40,7 +40,6 @@ export const DataProvider: React.FC<{ children: ReactNode; url?: string }> = ({
         .filter(Boolean) as LogItemDataWithId[];
       setItmes((prev) => [...prev, ...newItems]);
       setParsedIndex(data.length);
-      console.log(`parsed ${data.length} items`);
     }
   }, [data, lastModified, parsedIndex]);
 
