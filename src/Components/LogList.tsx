@@ -12,7 +12,7 @@ interface LogListProps {
 }
 
 // IMPORTANT: Adjust the height of each log item based on the UI design
-const _ItemHeight = 42; // Height of each log item in pixels
+// const _ItemHeight = 42; // Height of each log item in pixels
 
 export const LogList: FC<LogListProps> = ({ items, loading, options = { autoSize: true } }) => {
   const optionsRef = useRef(options);
