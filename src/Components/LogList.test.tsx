@@ -53,4 +53,8 @@ describe("LogList Component", () => {
     expect(screen.getByText("Time")).toBeInTheDocument();
     expect(screen.getByText("Event")).toBeInTheDocument();
   });
+
+  // TODO: Test for scroll behavior
+
+  // TODO: Test for dynamic height adjustment
 });

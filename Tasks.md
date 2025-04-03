@@ -1,7 +1,7 @@
 * [x] Create streaming fetch hook
-* [] Create list view
+* [x] Create list view
 * [x] Expandable item
-* [] Virtualize the list view
+* [x] Virtualize the list view
 * [] time line
 * [] use deferred value
 * [] Keyboard shortcut

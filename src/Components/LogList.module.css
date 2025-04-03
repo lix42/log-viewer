@@ -2,7 +2,7 @@
   width: 90vw;
   max-width: 1024px;
   margin: auto;
-  border-collapse: collapse;
+  overflow-y: auto;
 }
 
 .loglist-header-row {
