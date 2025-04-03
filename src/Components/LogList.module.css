@@ -1,0 +1,48 @@
+.loglist-table {
+  width: 90vw;
+  max-width: 1024px;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+.loglist-header-row {
+  font-weight: 600;
+  background-color: var(--table-header-bg);
+  display: flex;
+  align-items: center;
+}
+
+.loglist-header-time {
+  flex: 0 1 var(--time-cell-width);
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+  border-right-color: var(--separator-line-color);
+  padding: 8px 2px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.loglist-header-event {
+  flex: 1;
+  padding: 8px 2px;
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+  border-left: none;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.loglist-loading {
+  text-align: center;
+  font-style: italic;
+  color: #888;
+}
+
+.loglist-no-logs {
+  text-align: center;
+  color: #555;
+}
+
+.loglist-row-group > div:nth-child(even) {
+  background-color: var(--alt-background-color);
+}
