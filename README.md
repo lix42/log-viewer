@@ -3,12 +3,24 @@
 ## Summary
 A log viewer to view a long logs from a network response.
 
+## Install
+```
+pnpm install
+```
+
+## Scripts
+* `pnpm dev` start a dev server
+* `pnpm check` lint, TS check, and unit tests
+* `pnpm storybook` start a storybook server (there should be more stories)
+* `pnpm build` build to `dist` folder
+
 ## Documents:
 
 * [High level design](https://github.com/lix42/log-viewer/wiki/Log-Viewer-High-Level-Design)
 * [Tasks list](./Tasks.md)
 * [Virtualization list decision](https://github.com/lix42/log-viewer/wiki/Virtualization-List)
 * [Timeline design](https://github.com/lix42/log-viewer/wiki/Timeline-Component)
+* [Future works](https://github.com/lix42/log-viewer/wiki/Future-works)
 
 ## Goals
 ### Functional
