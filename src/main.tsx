@@ -6,6 +6,7 @@ import { DataProvider } from "./DataProvider.tsx";
 import styles from "./main.module.css";
 import "./reset.css";
 import "./styles.css";
+import { LightDarkSwitcher } from "./LightDarkSwitcher.tsx";
 
 const root = document.getElementById("root");
 if (!root) {
@@ -22,6 +23,7 @@ createRoot(root).render(
         <div className={styles.logListWrapper}>
           <LogListWrapper options={{ autoSize: false }} />
         </div>
+        <LightDarkSwitcher />
       </main>
     </DataProvider>
   </StrictMode>,

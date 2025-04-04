@@ -9,6 +9,18 @@
   --time-cell-width: 230px;
 }
 
+:root.light {
+  color-scheme: light;
+}
+
+:root.dark {
+  color-scheme: dark;
+}
+
+:root.system {
+  color-scheme: light dark;
+}
+
 body {
   color: var(--text-color);
   background-color: var(--background-color);

@@ -15,7 +15,7 @@ A log viewer to view a long logs from a network response.
 * [x] Fetch data from the given URL
 * [x] Render list view
 * [x] Render individual item in the list view
-* [] Render time line
+* [x] Render time line
 * [] Error handling
 ### Performance
 * [x] Deal with streaming response
@@ -24,10 +24,10 @@ A log viewer to view a long logs from a network response.
 * [] Virtualization list view (add and remove)
 * [] Local storage cache
 ### Style
-* [] light/dark mode
-* [] Responsive design
+* [x] light/dark mode
+* [x] Responsive design
 ### Other
-* [] A11Y
+* [x] A11Y
 * [] Keyboard shortcut
 ### Extra features
 * [] Support url from user input
