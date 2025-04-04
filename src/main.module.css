@@ -1,0 +1,21 @@
+.main {
+  width: 90vw;
+  max-width: 1024px;
+  height: 100vh;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.timeline {
+  flex: 0 0 auto; /* No grow, no shrink */
+}
+
+.logListWrapper {
+  flex: 1 1 auto; /* Takes the remaining space */
+  min-height: 0;
+  border: 1px solid var(--border-color);
+  border-collapse: collapse;
+}

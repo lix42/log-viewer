@@ -3,18 +3,19 @@ import { LogItemDataWithId } from "../type";
 import { LogItem } from "./LogItem";
 import styles from "./LogList.module.css"; // Import CSS module
 
+export interface LogListOptions {
+  autoSize?: boolean; // Automatically adjust the height of the log list
+}
 interface LogListProps {
   items: LogItemDataWithId[];
   loading: boolean;
-  options?: {
-    autoSize?: boolean;
-  };
+  options?: LogListOptions;
 }
 
 // IMPORTANT: Adjust the height of each log item based on the UI design
 // const _ItemHeight = 42; // Height of each log item in pixels
 
-export const LogList: FC<LogListProps> = ({ items, loading, options = { autoSize: true } }) => {
+export const LogList: FC<LogListProps> = ({ items, loading, options = { autoSize: false } }) => {
   const optionsRef = useRef(options);
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerHeight, setContainerHeight] = useState(0);

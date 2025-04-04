@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useState } from "react";
+import { ReactNode, useCallback, useDeferredValue, useEffect, useState } from "react";
 import { DataContext } from "./DataContext";
 import { useStreamingFetch } from "./hooks/useStreamingFetch";
 import { DataContextType, LogItemDataWithId } from "./type";
@@ -20,7 +20,7 @@ export const DataProvider: React.FC<{ children: ReactNode; url?: string }> = ({
   const [parsedIndex, setParsedIndex] = useState(0);
 
   const { data, loading, error, lastModified, refetch } = useStreamingFetch(url, {
-    intervalBetweenRead: 200,
+    intervalBetweenRead: 20,
   });
 
   const parseData = useCallback(() => {
@@ -56,6 +56,8 @@ export const DataProvider: React.FC<{ children: ReactNode; url?: string }> = ({
     loading,
     error,
     refetch,
+    lastModified,
   };
+
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };
