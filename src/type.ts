@@ -19,4 +19,5 @@ export type DataContextType = {
   loading: boolean;
   error: Error | null;
   refetch: () => void;
+  lastModified: string | null;
 };
