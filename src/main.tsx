@@ -3,10 +3,10 @@ import { createRoot } from "react-dom/client";
 import { LogListWrapper } from "./Components/LogListWrapper.tsx";
 import { TimelineWrapper } from "./Components/TimelineWrapper.tsx";
 import { DataProvider } from "./DataProvider.tsx";
+import { LightDarkSwitcher } from "./LightDarkSwitcher.tsx";
 import styles from "./main.module.css";
 import "./reset.css";
 import "./styles.css";
-import { LightDarkSwitcher } from "./LightDarkSwitcher.tsx";
 
 const root = document.getElementById("root");
 if (!root) {

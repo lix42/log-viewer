@@ -1,10 +1,10 @@
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useId } from "react";
-import { test } from "vitest";
 import styles from "./LightDarkSwitcher.module.css";
 
 type Theme = "light" | "dark" | "system";
 
+// TODO add unit tests, add storybook
 export const LightDarkSwitcher = () => {
   const [theme, setTheme] = useState<Theme>(() => {
     const savedTheme = localStorage.getItem("theme") as Theme;
