@@ -6,8 +6,9 @@ A log viewer to view a long logs from a network response.
 ## Documents:
 
 * [High level design](https://github.com/lix42/log-viewer/wiki/Log-Viewer-High-Level-Design)
-* [Virtualization list decision](https://github.com/lix42/log-viewer/wiki/Virtualization-List)
 * [Tasks list](./Tasks.md)
+* [Virtualization list decision](https://github.com/lix42/log-viewer/wiki/Virtualization-List)
+* [Timeline design](https://github.com/lix42/log-viewer/wiki/Timeline-Component)
 
 ## Goals
 ### Functional
