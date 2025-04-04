@@ -1,0 +1,50 @@
+{
+  // These tasks will run in order when initializing your CodeSandbox project.
+  "setupTasks": [
+    {
+      "command": "npm install --force",
+      "name": "Installing Dependencies"
+    }
+  ],
+
+  // These tasks can be run from CodeSandbox. Running one will open a log in the app.
+  "tasks": {
+    "dev": {
+      "name": "dev",
+      "command": "npm run dev",
+      "runAtStart": true
+    },
+    "build": {
+      "name": "build",
+      "command": "npm run build"
+    },
+    "check": {
+      "name": "check",
+      "command": "npm run check"
+    },
+    "fix": {
+      "name": "fix",
+      "command": "npm run fix"
+    },
+    "preview": {
+      "name": "preview",
+      "command": "npm run preview"
+    },
+    "test": {
+      "name": "test",
+      "command": "npm run test"
+    },
+    "coverage": {
+      "name": "coverage",
+      "command": "npm run coverage"
+    },
+    "storybook": {
+      "name": "storybook",
+      "command": "npm run storybook"
+    },
+    "build-storybook": {
+      "name": "build-storybook",
+      "command": "npm run build-storybook"
+    }
+  }
+}
