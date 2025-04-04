@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useDeferredValue, useEffect, useState } from "react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 import { DataContext } from "./DataContext";
 import { useStreamingFetch } from "./hooks/useStreamingFetch";
 import { DataContextType, LogItemDataWithId } from "./type";

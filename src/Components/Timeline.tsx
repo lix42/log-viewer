@@ -1,12 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { LogItemDataWithId } from "../type";
 import styles from "./Timeline.module.css";
-
-const BucketWidth = 60; //60px
-const BucketGap = 5; //5px
-const CanvasMargin = 10; //10px
-const CanvasLeftMargin = 60; //60px
-const CanvasBottomMargin = 40; //40px
+import { TimelineCanvas } from "./TimelineCanvas";
+import {
+  BucketGap,
+  BucketWidth,
+  CanvasBottomMargin,
+  CanvasLeftMargin,
+  CanvasMargin,
+} from "./timelineConstants";
 
 interface TimelineProps {
   items: LogItemDataWithId[];
@@ -146,18 +148,12 @@ const TimelineComponent = ({ items, loading, lastModified }: TimelineProps) => {
           );
         })}
       </ol>
-      <div className={styles["timeline-background"]} aria-hidden />
-      <div
-        className={styles["timeline-canvas"]}
-        style={{
-          // TODO: use CSS in JS to set the size and position of the canvas
-          top: CanvasMargin,
-          left: CanvasLeftMargin,
-          right: CanvasMargin,
-          bottom: CanvasBottomMargin,
-        }}
-        data-testid="timeline-canvas"
-        aria-hidden
+      <TimelineCanvas
+        size={size}
+        minCount={minCount}
+        maxCount={maxCount}
+        bucketsStartTime={bucketsStartTime}
+        maxTime={maxTime}
       >
         {buckets.map((bucket, index) => {
           const bucketStartTime = bucketsStartTime + index * bucketsDuration;
@@ -182,66 +178,10 @@ const TimelineComponent = ({ items, loading, lastModified }: TimelineProps) => {
             </div>
           );
         })}
-      </div>
-      <div
-        className={styles["timeline-label"]}
-        data-testid="timeline-label-max-count"
-        aria-hidden
-        style={{
-          top: 4,
-          right: size.width - CanvasLeftMargin + 4,
-        }}
-      >
-        {maxCount}
-      </div>
-      <div
-        className={styles["timeline-label"]}
-        data-testid="timeline-label-mid-count"
-        aria-hidden
-        style={{
-          top: (size.height - CanvasBottomMargin) / 2 + 4,
-          right: size.width - CanvasLeftMargin + 4,
-        }}
-      >
-        {Math.floor((maxCount - minCount) / 2)}
-      </div>
-      <div
-        className={styles["timeline-label"]}
-        data-testid="timeline-label-min-count"
-        aria-hidden
-        style={{
-          right: size.width - CanvasLeftMargin + 4,
-          bottom: CanvasBottomMargin - 4,
-        }}
-      >
-        {minCount}
-      </div>
-      <div
-        className={styles["timeline-label"]}
-        data-testid="timeline-label-start-time"
-        aria-hidden
-        style={{
-          left: CanvasLeftMargin,
-          bottom: 4,
-        }}
-      >
-        {new Date(bucketsStartTime).toLocaleString()}
-      </div>
-      <div
-        className={styles["timeline-label"]}
-        data-testid="timeline-label-end-time"
-        aria-hidden
-        style={{
-          right: CanvasMargin,
-          bottom: 4,
-        }}
-      >
-        {new Date(maxTime).toLocaleString()}
-      </div>
-
+      </TimelineCanvas>
       {loading && <div className={styles["timeline-loading"]} data-testid="timeline-loading" />}
     </div>
   );
 };
 
-export const Timeline = React.memo(TimelineComponent);
+export const Timeline = memo(TimelineComponent);
