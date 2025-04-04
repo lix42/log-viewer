@@ -48,3 +48,8 @@
   align-items: center;
   justify-content: center;
 }
+
+.timeline-label {
+  position:absolute;
+
+}
