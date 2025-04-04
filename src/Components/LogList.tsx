@@ -13,7 +13,7 @@ interface LogListProps {
 }
 
 // IMPORTANT: Adjust the height of each log item based on the UI design
-// const _ItemHeight = 42; // Height of each log item in pixels
+const ItemHeight = 42; // Height of each log item in pixels
 
 export const LogList: FC<LogListProps> = ({ items, loading, options = { autoSize: false } }) => {
   const optionsRef = useRef(options);
@@ -45,9 +45,9 @@ export const LogList: FC<LogListProps> = ({ items, loading, options = { autoSize
     const handleScroll = () => {
       // TODO: clean up the top elements scrolling out of view
       const containerHeight = containerElem.clientHeight;
-      const contentHeight = containerElem.scrollHeight;
+      const itemsHeight = inScopeCount * ItemHeight;
       const scrollPosition = containerElem.scrollTop;
-      if (scrollPosition + containerHeight * 3 > contentHeight) {
+      if (scrollPosition + containerHeight * 3 > itemsHeight) {
         setInScopeCount((prev) => Math.min(prev + 100, items.length));
       }
     };
@@ -55,7 +55,7 @@ export const LogList: FC<LogListProps> = ({ items, loading, options = { autoSize
     // TODO: remove the scoll event listener if already scrolled to the bottom
     containerElem.addEventListener("scroll", handleScroll);
     return () => containerElem.removeEventListener("scroll", handleScroll);
-  }, [containerElem, items.length]);
+  }, [containerElem, items.length, inScopeCount]);
 
   if (items.length === 0) {
     if (loading) {
@@ -82,7 +82,13 @@ export const LogList: FC<LogListProps> = ({ items, loading, options = { autoSize
           </div>
         </div>
       </div>
-      <div role="rowgroup" className={styles["loglist-row-group"]}>
+      <div
+        role="rowgroup"
+        className={styles["loglist-row-group"]}
+        style={{
+          minHeight: `${items.length * ItemHeight}px`,
+        }}
+      >
         {items
           .filter((_, index) => index < inScopeCount)
           .map(({ data, id }, index) => (
